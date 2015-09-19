@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Email : MonoBehaviour 
+public class Email 
 {
 
     public const int RESPONSE_DISSMISS = 0;
@@ -14,8 +14,17 @@ public class Email : MonoBehaviour
 
     private System.Diagnostics.Stopwatch m_stopwatch = new System.Diagnostics.Stopwatch();
 
+
+    public Email()
+    {
+
+    }
+
     public void Init(string topic, int correctResponse, float autoDissmissTimeout)
     {
+
+        m_stopwatch.Start();
+
         m_topic = topic;
         m_correctResponse = correctResponse;
         m_autoDissmissTimeout = autoDissmissTimeout;
@@ -24,22 +33,34 @@ public class Email : MonoBehaviour
     //todo: implement.
     public static Email SpawnEmail()
     {
-        return null;
+        return new Email();
     }
 
-	// Use this for initialization
-	void Start () 
-    {
-        m_stopwatch.Start();
-	}
 
     public void Handle(int response)
     {
         if (response != m_correctResponse)// What? Who decided to send construction workers to burning buildings and firemen to falling building... Mayor needs to know about this, need to call him. in a minute
         {
-            PhoneBot.GetPhoneBot().MakeCall(Random.Range(20f,180f));
+            GodBot.GetGodBot().LaunchEvent();
+            //PhoneBot.GetPhoneBot().MakeCall(Random.Range(20f,180f));
         }
         m_stopwatch.Stop();
+    }
+
+    public bool IsLate
+    {
+        get
+        {
+            return m_stopwatch.Elapsed.TotalSeconds > m_autoDissmissTimeout;
+        }
+    }
+
+    public string Topic
+    {
+        get
+        {
+            return m_topic;
+        }
     }
 
 	// Update is called once per frame

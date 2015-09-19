@@ -30,7 +30,7 @@ public class Computer : MonoBehaviour
     {
         for (int i = 0; i < m_emails.Count; i++)
         {
-            if (m_emails[i] == null)
+            if (m_emails[i].IsLate)
             {
                 m_emails.RemoveAt(i);
                 i--;
