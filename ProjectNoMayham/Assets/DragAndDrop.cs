@@ -34,7 +34,19 @@ public class DragAndDrop : MonoBehaviour
             else
                 Parent = this.gameObject;
         }
-            
+
+        //DropZones = FindObjectsOfType<Collider2D>();
+
+        DropZone[] zones = FindObjectsOfType<DropZone>();
+
+        DropZones = new Collider2D[zones.Length];
+
+        for (int i = 0; i < zones.Length; i++ )
+        {
+            DropZones[i] = zones[i].GetComponent<Collider2D>();
+        }
+        
+
     }
 
     // Update is called once per frame

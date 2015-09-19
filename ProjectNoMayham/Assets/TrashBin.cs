@@ -16,7 +16,7 @@ public class TrashBin : DropZone {
     public override void Interact(GameObject interactor)
     {
         base.Interact(interactor);
-        if (interactor.name == "Enveloped")
+        if (interactor.name.StartsWith("Envelope"))
         {
             GameObject.Destroy(interactor);
             Debug.Log("Letter Destroyed");

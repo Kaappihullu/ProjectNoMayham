@@ -14,6 +14,7 @@ public class PaperMailTube : MonoBehaviour {
 	void Start () 
     {
         m_paperMailTube = this;
+        Send(5f);
 	}
 	
 	// Update is called once per frame
@@ -28,6 +29,9 @@ public class PaperMailTube : MonoBehaviour {
         {
             OnIncomingPaperMail();
         }
+
+        Spawner.Spawn("Prefabs/Envelope");
+
     }
 
     public void Send(float time)
