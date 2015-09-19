@@ -7,7 +7,8 @@ public class SpriteInteraction : MonoBehaviour {
     public Sprite[] ToggleStates;
 
     public SpriteRenderer SpriteObject;
-    int state = 0;
+
+    public int state = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +22,10 @@ public class SpriteInteraction : MonoBehaviour {
     void OnMouseDown()
     {
         Debug.Log(state);
-        interact();
+        Interact();
     }
 
-    private void interact()
+    public virtual void Interact()
     {
         ToggleNextState();
     }
