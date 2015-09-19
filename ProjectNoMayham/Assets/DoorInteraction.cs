@@ -17,16 +17,24 @@ public class DoorInteraction : SpriteInteraction {
 
     public override void Interact()
     {
-        base.Interact();
+        base.Interact();        
         if (state == 1)
         {
+            // Door open
             secretary.SetActive(true);
             secretary.GetComponent<ScaleAnimation>().StartAnimation();
+            BoxCollider2D bc = GetComponent<BoxCollider2D>();
+            bc.size = new Vector2(bc.size.x * 2, bc.size.y);
+            bc.offset = new Vector2(bc.offset.x * 2, bc.offset.y);
         }
         else if (state == 0)
         {
+            // Door closed
             secretary.GetComponent<ScaleAnimation>().StopAnimation();
             secretary.SetActive(false);
+            BoxCollider2D bc = GetComponent<BoxCollider2D>();
+            bc.size = new Vector2(bc.size.x / 2, bc.size.y);
+            bc.offset = new Vector2(bc.offset.x / 2, bc.offset.y);
         }
     }
 }
