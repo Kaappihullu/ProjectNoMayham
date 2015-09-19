@@ -4,15 +4,15 @@ using System.Collections;
 public class EmailBot : MonoBehaviour 
 {
 
-    public float SendInterval = 10f;
-    public float SkipSendChance = 0.5f;
+   // public float SendInterval = 10f;
+   // public float SkipSendChance = 0.5f;
 
-    private System.Diagnostics.Stopwatch m_stopwatch = new System.Diagnostics.Stopwatch();
+   // private System.Diagnostics.Stopwatch m_stopwatch = new System.Diagnostics.Stopwatch();
 
 	// Use this for initialization
 	void Start () 
     {
-        m_stopwatch.Start();
+      //  m_stopwatch.Start();
 	}
 
     //Maybe implement prober name generator... meh.
@@ -28,7 +28,7 @@ public class EmailBot : MonoBehaviour
 
     }
 
-    public void SendEmail()
+    public static void SendEmail()
     {
 
         Email email = Email.SpawnEmail();
@@ -43,7 +43,7 @@ public class EmailBot : MonoBehaviour
 	void Update () 
     {
 
-        if (m_stopwatch.Elapsed.TotalSeconds > SendInterval)
+   /*     if (m_stopwatch.Elapsed.TotalSeconds > SendInterval)
         {
 
             if (SkipSendChance >= Random.value)
@@ -55,6 +55,6 @@ public class EmailBot : MonoBehaviour
             m_stopwatch.Reset();
             m_stopwatch.Start();
         }
-
+        */
 	}
 }

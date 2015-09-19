@@ -25,9 +25,9 @@ public class PhoneBot : MonoBehaviour
             m_stopwatch.Start();
 
         }
-        else // Cant call the Mayor busy signal... SEND MAIL
+        else
         {
-            PaperMailTube.GetPaperMailTube().Send(Random.Range(15f, 120f));
+            GodBot.GetGodBot().LaunchEvent();
         }
 
     }
@@ -54,10 +54,14 @@ public class PhoneBot : MonoBehaviour
             {
                 Phone.GetPhone().Hangup();
 
-                PaperMailTube.GetPaperMailTube().Send(Random.Range(15f,120f));
+                GodBot.GetGodBot().LaunchEvent();
+
                 m_stopwatch.Stop();
                 m_stopwatch.Reset();
+
             }
+
+            m_currentCallDuration = 0f;
         }
 	}
 

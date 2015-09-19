@@ -30,10 +30,15 @@ public class Phone : MonoBehaviour
 
         private set
         {
-            m_state = value;
-            if (OnPhoneStateChangeEvent != null)
+
+            if (value != m_state)
             {
-                OnPhoneStateChangeEvent();
+
+                m_state = value;
+                if (OnPhoneStateChangeEvent != null)
+                {
+                    OnPhoneStateChangeEvent();
+                }
             }
         }
         get
