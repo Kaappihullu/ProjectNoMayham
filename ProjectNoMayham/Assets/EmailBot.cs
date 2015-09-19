@@ -21,7 +21,7 @@ public class EmailBot : MonoBehaviour
 
         string[] topics = { "Urgent", "Important", "Only for you!", "You have won the spanish national lottery"
                             ,"People will die!", "Opportunity", "Cat pics", "need money?", "VIP Eyes only", "Beeutifull nudezz"
-                          , "need permission","permission pending","another permission request"};
+                          , "need permission","permission pending","another permission request", "for good cause"};
 
 
         return topics[Random.Range(0,topics.Length)];

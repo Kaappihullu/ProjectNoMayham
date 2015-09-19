@@ -61,7 +61,7 @@ public class PhoneBot : MonoBehaviour
         }
 	}
 
-    public PhoneBot GetPhoneBot()
+    public static PhoneBot GetPhoneBot()
     {
         return m_phoneBot;
     }
