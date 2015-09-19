@@ -73,6 +73,18 @@ public class PhoneBot : MonoBehaviour
             m_stopwatch.Reset();
             m_currentCallDuration = 0f;
         }
+        else if (m_currentCallDuration != 0f && (Phone.GetPhone().State == PhoneState.Ring || Phone.GetPhone().State == PhoneState.Idle)) //hang up!! in mid sentence
+        {
+
+            if(Random.value < 0.8f) // good chance to lauch new event.
+            {
+                GodBot.GetGodBot().LaunchEvent();
+            }
+
+            m_stopwatch.Stop();
+            m_stopwatch.Reset();
+            m_currentCallDuration = 0f;
+        }
 	}
 
     public static PhoneBot GetPhoneBot()

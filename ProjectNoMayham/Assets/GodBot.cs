@@ -22,24 +22,24 @@ public class GodBot : MonoBehaviour
     public void LaunchEvent()
     {
 
-        switch (Random.Range(0, 13))
+        switch (Random.Range(0, 12))
         {
             case 0:
             case 1:
-            case 3:
+            case 2:
                 EmailBot.SendEmail();
                 break;
+            case 3:
             case 4:
             case 5:
-            case 6:
                 PhoneBot.GetPhoneBot().MakeCall(Random.Range(10f,180f));
                 break;
+            case 6:
             case 7:
             case 8:
-            case 9:
                 PaperMailTube.GetPaperMailTube().Send(Random.Range(20f,360f));
                 break;
-            case 10:// jackpot!! double event!
+            case 9:// jackpot!! double event!
                 LaunchEvent();
                 LaunchEvent();
                 break;
