@@ -49,18 +49,28 @@ public class PhoneBot : MonoBehaviour
     {
         if (m_currentCallDuration != 0f && m_stopwatch.Elapsed.TotalSeconds > m_currentCallDuration)
         {
-            //Mayor didnt answer SEND MAIL!
+         
             if (Phone.GetPhone().State == PhoneState.Ring)
             {
                 Phone.GetPhone().Hangup();
 
                 GodBot.GetGodBot().LaunchEvent();
 
-                m_stopwatch.Stop();
-                m_stopwatch.Reset();
+            }
+            else if (Phone.GetPhone().State == PhoneState.Ongoing)
+            {
+                Phone.GetPhone().Hangup();
+
+                if (Random.value < 0.2f)//small chance to launch new event.
+                {
+                    GodBot.GetGodBot().LaunchEvent();
+                }
 
             }
 
+
+            m_stopwatch.Stop();
+            m_stopwatch.Reset();
             m_currentCallDuration = 0f;
         }
 	}
