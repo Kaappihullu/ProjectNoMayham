@@ -36,7 +36,7 @@ public class EmailBot : MonoBehaviour
 
         Email email = Email.SpawnEmail();
         
-        email.Init(GenerateTopic(),Random.Range(0,3),Random.Range(5f,30f));
+        email.Init(GenerateTopic(),Random.Range(0,3),Random.Range(50f,300f));
 
         m_emails.Add(email);
 
