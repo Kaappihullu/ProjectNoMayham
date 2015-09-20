@@ -99,7 +99,7 @@ public class Computer : MonoBehaviour
     }
     public void DeleteReadMessage()
     {
-        m_reading = null;
+        m_reading = null;        
         //DialogPanel.GetDialogPanel().OnDialogResolvedEvent -= OnDialogResolved;
     }
 
@@ -109,10 +109,12 @@ public class Computer : MonoBehaviour
         if (m_reading != null && okPressed)
         {
             Debug.Log("Mail forwarded");
+            Score.Calc(1);
         }
         else
         {
             Debug.Log("Mail Junked");
+            Score.Calc(1);
         }
         DeleteReadMessage();
     }

@@ -60,6 +60,7 @@ public class GodBot : MonoBehaviour
 
             m_stopwatch.Reset();
             m_stopwatch.Start();
+            EventRate = Mathf.Max(0.99f*EventRate, 1f);
         }
 	}
 

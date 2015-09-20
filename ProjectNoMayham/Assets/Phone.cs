@@ -23,13 +23,13 @@ public class Phone : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (m_state == PhoneState.Ring && !ring.isPlaying)
-        {
-            ring.Play();
-            ring.loop = true;
-        }
-        else
-            ring.Stop();
+        //if (m_state == PhoneState.Ring && !ring.isPlaying)
+        //{
+        //    ring.Play();
+        //    ring.loop = true;
+        //}
+        //else
+        //    ring.Stop();
 	}
 
 
@@ -58,6 +58,7 @@ public class Phone : MonoBehaviour
 
     public void Answer()
     {
+        ring.Stop();
         if (State == PhoneState.Ring)
         {
             State = PhoneState.Ongoing;
@@ -66,6 +67,10 @@ public class Phone : MonoBehaviour
 
     public void Ring()
     {
+        ring.Play();
+        Debug.Log("Phone is Ringing!!");
+
+        GetComponent<Animator>().SetBool("Ring", true);
         if (State == PhoneState.Idle)
         {
             State = PhoneState.Ring;
@@ -73,7 +78,8 @@ public class Phone : MonoBehaviour
     }
 
     public void Hangup()
-    {
+    {                
+        GetComponent<Animator>().SetBool("Ring", false);
         if (State == PhoneState.Ongoing || State == PhoneState.Ring)
         {
             State = PhoneState.Idle;
