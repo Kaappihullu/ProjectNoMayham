@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DialogPanel : MonoBehaviour {
 
@@ -61,13 +62,13 @@ public class DialogPanel : MonoBehaviour {
         m_singleton.m_dismiss = dismiss;
         m_singleton.m_ok = ok;
 
-        m_singleton.Invoke("CreateDialog", 0.2f);
-
+        m_singleton.StartCoroutine(m_singleton.createDialog());
       
     }
 
-    private void createDialog()
+    private IEnumerator createDialog()
     {
+        yield return 0;
         DialogText.text = m_content;
 
         if (m_ok == "")
