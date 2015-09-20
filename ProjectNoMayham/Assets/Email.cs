@@ -64,11 +64,11 @@ public class Email
     }
 
 	// Update is called once per frame
-	void FixedUpdate () 
+	/*void FixedUpdate () 
     {
         if (m_stopwatch.Elapsed.TotalSeconds > m_autoDissmissTimeout)
         {
             Handle(RESPONSE_DISSMISS);
         }
-	}
+	}*/
 }

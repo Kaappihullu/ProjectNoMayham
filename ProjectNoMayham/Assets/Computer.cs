@@ -39,6 +39,14 @@ public class Computer : MonoBehaviour
         }
     }
 
+    public int GetEmailCount()
+    {
+
+        emptyNulls();
+
+        return m_emails.Count;
+    }
+
     public Email[] GetEmails(int count)
     {
         emptyNulls();

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EmailBot : MonoBehaviour 
 {
@@ -8,6 +9,8 @@ public class EmailBot : MonoBehaviour
    // public float SkipSendChance = 0.5f;
 
    // private System.Diagnostics.Stopwatch m_stopwatch = new System.Diagnostics.Stopwatch();
+
+    private static List<Email> m_emails = new List<Email>();
 
 	// Use this for initialization
 	void Start () 
@@ -35,6 +38,8 @@ public class EmailBot : MonoBehaviour
         
         email.Init(GenerateTopic(),Random.Range(0,3),Random.Range(5f,30f));
 
+        m_emails.Add(email);
+
         Computer.GetComputer().ReceiveEmail(email);
 
     }
@@ -42,6 +47,17 @@ public class EmailBot : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+
+
+        for (int i = 0; i < m_emails.Count; i++)
+        {
+            if (m_emails[i].IsLate)
+            {
+                m_emails[i].Handle(Email.RESPONSE_DISSMISS);
+                m_emails.RemoveAt(i);
+            }
+        }
+        
 
    /*     if (m_stopwatch.Elapsed.TotalSeconds > SendInterval)
         {
