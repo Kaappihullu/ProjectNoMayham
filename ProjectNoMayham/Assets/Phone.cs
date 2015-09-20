@@ -12,6 +12,8 @@ public class Phone : MonoBehaviour
 
     public event PhoneStateAction OnPhoneStateChangeEvent;
 
+    public AudioSource ring;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -21,7 +23,13 @@ public class Phone : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-	
+        if (m_state == PhoneState.Ring && !ring.isPlaying)
+        {
+            ring.Play();
+            ring.loop = true;
+        }
+        else
+            ring.Stop();
 	}
 
 

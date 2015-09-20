@@ -11,15 +11,15 @@ public class Score
     public static void Calc(int delta)
     {
         m_score += delta;
+
+        UnityEngine.Debug.Log("Score: " + m_score);
     }
 
-    public int Total
+    public static int Total
     {
         get
         {
             return m_score;
         }
     }
-
-
 }

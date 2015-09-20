@@ -42,6 +42,8 @@ public class EmailBot : MonoBehaviour
 
         Computer.GetComputer().ReceiveEmail(email);
 
+        Score.Calc(-1);
+
     }
 
 	// Update is called once per frame

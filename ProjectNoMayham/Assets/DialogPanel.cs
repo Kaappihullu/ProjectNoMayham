@@ -106,7 +106,7 @@ public class DialogPanel : MonoBehaviour
         }
     }
 
-    public void CreateDialog(string content, string ok)
+    public static void CreateDialog(string content, string ok)
     {
         CreateDialog(content, ok, "");
     }

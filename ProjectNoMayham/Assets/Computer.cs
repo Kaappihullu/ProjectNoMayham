@@ -10,6 +10,8 @@ public class Computer : MonoBehaviour
 
     private List<Email> m_emails = new List<Email>();
 
+    public AudioClip EmailSound;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -25,6 +27,10 @@ public class Computer : MonoBehaviour
 
     public void ReceiveEmail(Email email)
     {
+        if (EmailSound != null)
+        {
+            AudioSource.PlayClipAtPoint(EmailSound, Vector3.zero);
+        }
         m_emails.Add(email);
     }
 
