@@ -63,6 +63,14 @@ public class Email
         }
     }
 
+    public string GetFullEmailString()
+    {
+        string text = "New E-Mail received!\n\n";
+        text += "Topic: " + Topic;
+
+        return text;
+    }
+
 	// Update is called once per frame
 	/*void FixedUpdate () 
     {
