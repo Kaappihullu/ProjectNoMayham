@@ -19,6 +19,7 @@ public class TrashBin : DropZone {
         if (interactor.name.StartsWith("Envelope"))
         {
             GameObject.Destroy(interactor);
+            Score.Calc(1);
             Debug.Log("Letter Destroyed");
         }
     }
