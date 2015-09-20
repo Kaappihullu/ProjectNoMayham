@@ -14,7 +14,7 @@ public class ComputerInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        int emails = Computer.GetComputer().GetEmails(20).Length;
+        int emails = Computer.GetComputer().GetEmailCount();//Computer.GetComputer().GetEmails(20).Length;
         
         if (emails > 0)
         {

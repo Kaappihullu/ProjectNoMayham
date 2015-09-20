@@ -44,6 +44,7 @@ public class GodBot : MonoBehaviour
                 LaunchEvent();
                 break;
             default://forget about it.
+                Score.Calc(1);
                 break;
         }
 

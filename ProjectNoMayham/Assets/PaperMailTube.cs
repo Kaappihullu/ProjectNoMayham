@@ -29,7 +29,7 @@ public class PaperMailTube : MonoBehaviour {
         {
             OnIncomingPaperMail();
         }
-
+        Score.Calc(-1);
         Spawner.Spawn("Prefabs/Envelope");
 
     }
