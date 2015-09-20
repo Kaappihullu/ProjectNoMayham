@@ -6,10 +6,10 @@ public class ComputerInteraction : MonoBehaviour {
 
     public int EmailFetchCount;
     private int m_emails;
-    public UnityEngine.UI.Text TextObject;
+    public UnityEngine.UI.Text TextObject;    
 	// Use this for initialization
 	void Start () {
-	
+        
 	}
 	
 	// Update is called once per frame

@@ -14,7 +14,7 @@ public class Computer : MonoBehaviour
 	void Start ()
     {
         m_computer = this;
-        DialogPanel.GetDialogPanel().OnDialogResolvedEvent += OnDialogResolved;
+        
     }
 	
 	// Update is called once per frame
@@ -80,11 +80,17 @@ public class Computer : MonoBehaviour
         {
             m_reading = mail;
             m_emails.Remove(mail);
-            DialogPanel.CreateDialog(mail.GetFullEmailString(), "Forward", "Delete");            
+            DialogPanel.CreateDialog(mail.GetFullEmailString(), "Forward", "Delete").OnDialogResolvedEvent += OnDialogResolved; ;
+            //StartCoroutine(CreateDialog(mail));
         }
         
     }
 
+    public IEnumerator CreateDialog(Email mail)
+    {
+        yield return 0;
+        DialogPanel.CreateDialog(mail.GetFullEmailString(), "Forward", "Delete");
+    }
     public void DeleteReadMessage()
     {
         m_reading = null;
@@ -93,10 +99,16 @@ public class Computer : MonoBehaviour
 
     public void OnDialogResolved(bool okPressed)
     {
+        Debug.Log("dialog resolved deleting email");        
         if (m_reading != null && okPressed)
         {
-
+            Debug.Log("Mail forwarded");
         }
+        else
+        {
+            Debug.Log("Mail Junked");
+        }
+        DeleteReadMessage();
     }
 
 }

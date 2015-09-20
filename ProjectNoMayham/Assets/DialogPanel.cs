@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
 
-public class DialogPanel : MonoBehaviour {
+public class DialogPanel : MonoBehaviour
+{
 
     private static DialogPanel m_singleton;
     public Button OkButton;
@@ -20,21 +21,23 @@ public class DialogPanel : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        m_singleton = this;
+        Debug.Log("Awake");
     }
-    void Start () {
-        
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+        Debug.Log("start!");
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void OnAccept()
     {
-        hideDialog();
+        HideDialog();
         if (OnDialogResolvedEvent != null)
         {
             OnDialogResolvedEvent(true);
@@ -43,7 +46,7 @@ public class DialogPanel : MonoBehaviour {
 
     public void OnDismiss()
     {
-        hideDialog();
+        HideDialog();
         if (OnDialogResolvedEvent != null)
         {
             OnDialogResolvedEvent(false);
@@ -55,20 +58,30 @@ public class DialogPanel : MonoBehaviour {
         return m_singleton;
     }
 
-    public static void CreateDialog(string content, string ok, string dismiss)
+    public static DialogPanel CreateDialog(string content, string ok, string dismiss)
     {
-        m_singleton.gameObject.SetActive(true);
-        m_singleton.m_content = content;
-        m_singleton.m_dismiss = dismiss;
-        m_singleton.m_ok = ok;
+        if (m_singleton == null)
+        {
+            DialogPanel dialog = ((GameObject)GameObject.Instantiate(Resources.Load("Prefabs/DialogPanel"))).GetComponent<DialogPanel>();
+            GameObject canvas = GameObject.Find("OverlayCanvas");
+            dialog.transform.SetParent(canvas.transform, false);
 
-        m_singleton.StartCoroutine(m_singleton.createDialog());
-      
+            dialog.m_content = content;
+            dialog.m_dismiss = dismiss;
+            dialog.m_ok = ok;
+            m_singleton = dialog;
+            dialog.CreateDialog();
+        }
+
+        return m_singleton;
     }
 
-    private IEnumerator createDialog()
+    public void CreateDialog()
     {
-        yield return 0;
+        //Debug.Log("Pip!");
+        //m_singleton.gameObject.SetActive(true);
+        //yield return 0;
+        Debug.Log("Pop!");
         DialogText.text = m_content;
 
         if (m_ok == "")
@@ -93,13 +106,18 @@ public class DialogPanel : MonoBehaviour {
         }
     }
 
-    public static void CreateDialog(string content, string ok)
+    public void CreateDialog(string content, string ok)
     {
         CreateDialog(content, ok, "");
     }
 
-    private void hideDialog()
+    public void HideDialog()
     {
-        m_singleton.gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        GameObject.Destroy(this.gameObject);
     }
+    //public void ShowDialog()
+    //{
+    //    m_singleton.gameObject.SetActive(true);
+    //}
 }
