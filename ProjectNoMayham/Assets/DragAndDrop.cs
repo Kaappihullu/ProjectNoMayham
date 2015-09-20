@@ -104,7 +104,9 @@ public class DragAndDrop : MonoBehaviour
         }
 
         Cursor.visible = true;
-        Debug.Log(gameObject.name + "released " );
+        Debug.Log(gameObject.name + " Released "+col );
+        if (col != null)
+            Debug.Log(col.name);
     }
 
     private Collider2D getDropZone(Collider2D[] colliders)
