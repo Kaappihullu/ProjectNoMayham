@@ -6,6 +6,7 @@ public class Computer : MonoBehaviour
 {
 
     private static Computer m_computer = null;
+    private Email m_reading = null;
 
     private List<Email> m_emails = new List<Email>();
 
@@ -13,7 +14,8 @@ public class Computer : MonoBehaviour
 	void Start ()
     {
         m_computer = this;
-	}
+        DialogPanel.GetDialogPanel().OnDialogResolvedEvent += OnDialogResolved;
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -69,6 +71,32 @@ public class Computer : MonoBehaviour
     public static Computer GetComputer()
     {
         return m_computer;
+    }
+
+    public void ReadMessage(Email mail)
+    {
+        Debug.Log("Reading Message");
+        if (m_reading == null)
+        {
+            m_reading = mail;
+            m_emails.Remove(mail);
+            DialogPanel.CreateDialog(mail.GetFullEmailString(), "Forward", "Delete");            
+        }
+        
+    }
+
+    public void DeleteReadMessage()
+    {
+        m_reading = null;
+        //DialogPanel.GetDialogPanel().OnDialogResolvedEvent -= OnDialogResolved;
+    }
+
+    public void OnDialogResolved(bool okPressed)
+    {
+        if (m_reading != null && okPressed)
+        {
+
+        }
     }
 
 }

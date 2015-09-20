@@ -9,9 +9,20 @@ public class DialogPanel : MonoBehaviour {
     public Button DismissButton;
     public Text DialogText;
 
-	// Use this for initialization
-	void Start () {
+    public delegate void DialogResolution(bool resolution);
+    public event DialogResolution OnDialogResolvedEvent;
+
+    private string m_content;
+    private string m_ok;
+    private string m_dismiss;
+
+    // Use this for initialization
+    void Awake()
+    {
         m_singleton = this;
+    }
+    void Start () {
+        
 	    
 	}
 	
@@ -22,46 +33,63 @@ public class DialogPanel : MonoBehaviour {
 
     public void OnAccept()
     {
-
         hideDialog();
+        if (OnDialogResolvedEvent != null)
+        {
+            OnDialogResolvedEvent(true);
+        }
     }
 
     public void OnDismiss()
     {
         hideDialog();
+        if (OnDialogResolvedEvent != null)
+        {
+            OnDialogResolvedEvent(false);
+        }
     }
 
-    public DialogPanel GetDialogPanel()
+    public static DialogPanel GetDialogPanel()
     {
         return m_singleton;
     }
 
     public static void CreateDialog(string content, string ok, string dismiss)
     {
-        m_singleton.DialogText.text = content;
         m_singleton.gameObject.SetActive(true);
+        m_singleton.m_content = content;
+        m_singleton.m_dismiss = dismiss;
+        m_singleton.m_ok = ok;
 
-        if (ok == "")
+        m_singleton.Invoke("CreateDialog", 0.2f);
+
+      
+    }
+
+    private void createDialog()
+    {
+        DialogText.text = m_content;
+
+        if (m_ok == "")
         {
-            m_singleton.OkButton.enabled = false;
+            OkButton.enabled = false;
         }
         else
         {
-            m_singleton.OkButton.enabled = true;
-            m_singleton.OkButton.GetComponentInChildren<Text>().text = ok;
+            OkButton.enabled = true;
+            OkButton.GetComponentInChildren<Text>().text = m_ok;
         }
 
 
-        if (dismiss == "")
+        if (m_dismiss == "")
         {
-            m_singleton.DismissButton.enabled = false;
+            DismissButton.enabled = false;
         }
         else
         {
-            m_singleton.DismissButton.enabled = true;
-            m_singleton.DismissButton.GetComponentInChildren<Text>().text = dismiss;
-        }       
-
+            DismissButton.enabled = true;
+            DismissButton.GetComponentInChildren<Text>().text = m_dismiss;
+        }
     }
 
     public static void CreateDialog(string content, string ok)

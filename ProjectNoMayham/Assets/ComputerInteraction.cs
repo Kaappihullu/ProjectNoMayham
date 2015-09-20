@@ -14,7 +14,7 @@ public class ComputerInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        int emails = Computer.GetComputer().GetEmailCount();//Computer.GetComputer().GetEmails(20).Length;
+        int emails = Computer.GetComputer().GetEmailCount();
         
         if (emails > 0)
         {
@@ -41,6 +41,12 @@ public class ComputerInteraction : MonoBehaviour {
 
     public void Interact()
     {
-        
+
+        Email[] emails = Computer.GetComputer().GetEmails(1);
+        Debug.Log(emails.Length);
+        if (emails.Length > 0)
+        {
+            Computer.GetComputer().ReadMessage(emails[0]);
+        }
     }
 }
